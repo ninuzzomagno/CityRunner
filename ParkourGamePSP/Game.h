@@ -3,12 +3,15 @@
 #include<oslib/oslib.h>
 #include<math.h>
 #include<string>
+#include<sstream>
 #include<fstream>
 #include<time.h>
 
 #include"DtTimer.h"
 
-const float SCALE = 15.f;
+const float SCALE = 30.f;
+
+const float VERSION = 1.1;
 
 enum class DIRECTION { null = -1, left = 0, up = 1, right = 2, bottom = 3 };
 
@@ -79,6 +82,7 @@ public:
 	int play(float&);
 private:
 	int mScore;
+	OSL_SOUND* music;
 };
 
 class Cubes {
@@ -87,7 +91,7 @@ public:
 	Cubes(float*, int*);
 	bool collide(Cubes*);
 	void update(float);
-	void draw();
+	void draw(float);
 
 	float pos[2];
 	int size[2];
@@ -97,16 +101,19 @@ class Player : Cubes {
 public:
 	Player(int*,bool);
 	bool update(float, Cubes**);
-	void ia(float);
+	void updateIA(float);
 	void draw();
+	void drawIA(float);
 	inline bool isFalling() { return this->fall; };
 private:
-	bool menu, fall, end;
+	int xIA, playedSoundIndex;
+	bool menu, fall, end, flipIA, playedSound;
 	int jumperCounter;
 	float vY, g, counter;
 	OSL_IMAGE* texture;
 	IRect* currentFrame;
 	AnimationPlayer* ap;
+	OSL_SOUND** jump;
 };
 
 class ParallaxLayer {
@@ -125,6 +132,7 @@ public:
 	ParallaxBackground(std::string path);
 	void update(float);
 	void draw();
+	void drawIA(float);
 private:
 
 	ParallaxLayer** layers;

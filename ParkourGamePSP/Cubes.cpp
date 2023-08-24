@@ -24,9 +24,9 @@ void Cubes::update(float dP) {
 	}
 }
 
-void Cubes::draw() {
+void Cubes::draw(float vel) {
 	if (this->pos[0] > -this->size[0] && this->pos[0] < 480)
-		oslDrawFillRect(this->pos[0], this->pos[1], this->pos[0] + this->size[0], this->pos[1] + this->size[1], COLOR::black);
+		oslDrawFillRect(this->pos[0] + vel, this->pos[1], this->pos[0] + this->size[0] + vel, this->pos[1] + this->size[1], COLOR::black);
 }
 
 bool Cubes::collide(Cubes*c) {

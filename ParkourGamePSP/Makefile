@@ -6,14 +6,14 @@ CFLAGS = -O2 -G0 -Wall
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
  
-LIBS=  -losl -ljpeg -lpng -lz -lBox2d\
+LIBS=  -losl -ljpeg -lpng -lz\
          -lpsphprm -lpspsdk -lpspctrl -lpsprtc -lpsppower -lpspgu -lpspgum  -lpspaudiolib -lpspaudio  -lpspaudiocodec\
          -lpspnet_adhocmatching -lpspnet_adhoc -lpspnet_adhocctl -lm -lstdc++
 
 #EXTRA_TARGETS is the output file
 #PSP_EBOOT_TITLE is the EBOOT's name
 EXTRA_TARGETS = EBOOT.PBP
-PSP_EBOOT_TITLE = ParkourGame
+PSP_EBOOT_TITLE = City runner
 PSP_EBOOT_ICON= icon.png
 PSP_EBOOT_PIC1= background.png
  

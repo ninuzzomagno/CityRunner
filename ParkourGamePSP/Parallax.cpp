@@ -74,6 +74,22 @@ void ParallaxBackground::draw() {
 	}
 }
 
+void ParallaxBackground::drawIA(float vel) {
+	if (this->multi == 0) {
+		for (int i = 0; i < this->maxLayers; i++) {
+			oslSetImageTile(this->text[0], this->frames[this->layers[i]->index].x, this->frames[this->layers[i]->index].y, this->frames[this->layers[i]->index].w, this->frames[this->layers[i]->index].h);
+			oslDrawImageXY(this->text[0], this->layers[i]->pos[0] + vel, this->layers[i]->pos[1]);
+			oslDrawImageXY(this->text[0], this->layers[i]->pos[0] + 480 * (vel < 0 ? 1 : -1) + vel, this->layers[i]->pos[1]);
+		}
+	}
+	else {
+		for (int i = 0; i < this->maxLayers; i++) {
+			oslDrawImageXY(this->text[i], this->layers[i]->pos[0] + vel, this->layers[i]->pos[1]);
+			oslDrawImageXY(this->text[i], this->layers[i]->pos[0] + 480 * (vel < 0 ? 1 : -1) + vel, this->layers[i]->pos[1]);
+		}
+	}
+}
+
 ParallaxLayer::ParallaxLayer(int py, int index, float vel) {
 	this->pos[1] = py;
 	this->pos[0] = 0;
